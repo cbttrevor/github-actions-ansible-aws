@@ -5,3 +5,5 @@ regions:
 keyed_groups:
   - key: key_name
     separator: ''
+compose:
+  ansible_user: ubuntu
