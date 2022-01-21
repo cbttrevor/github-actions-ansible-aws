@@ -6,6 +6,7 @@ on:
 
 env:
   inventory-file: inventory.aws_ec2.yml
+  ANSIBLE_HOST_KEY_CHECKING: false
 
 jobs:
   ansible01:
