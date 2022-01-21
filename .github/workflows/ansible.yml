@@ -8,4 +8,10 @@ jobs:
   ansible01:
     runs-on: ubuntu-latest
     steps:
-    - 
+    - name: Clone Source Code
+      uses: actions/checkout@v2.4.0
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+    - name: Build Ansible Inventory from Amazon EC2
+      run: |
+        ansible-galaxy collection install amazon.aws
