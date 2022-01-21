@@ -7,6 +7,7 @@ on:
 env:
   inventory-file: inventory.aws_ec2.yml
   ANSIBLE_HOST_KEY_CHECKING: false
+  ANSIBLE_REMOTE_USER: ubuntu
 
 jobs:
   ansible01:
