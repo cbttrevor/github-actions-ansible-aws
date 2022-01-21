@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  inventory-file: inventory.aws_ec2.yml
+
 jobs:
   ansible01:
     runs-on: ubuntu-latest
@@ -16,8 +19,13 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-west-2
+    - name: Write SSH Key to Disk
+      shell: pwsh
+      run: |
+        Set-Content -Path mykey -Value '${{ secrets.ANSIBLE_SSH_KEY }}'
     - name: Build Ansible Inventory from Amazon EC2
       run: |
         pip3 install boto3 ansible
         ansible-galaxy collection install amazon.aws
-        ansible-inventory --inventory inventory.aws_ec2.yml --list -vvvv
+        ansible-inventory --inventory ${{ env.inventory-file }} --list -vvvv
+        ansible-playbook all --inventory ${{ env.inventory-file }} myconfig.yml
