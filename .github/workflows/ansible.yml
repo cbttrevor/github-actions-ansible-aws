@@ -1,0 +1,11 @@
+name: Ansible Deploy to AWS
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  ansible01:
+    runs-on: ubuntu-latest
+    steps:
+    - 
