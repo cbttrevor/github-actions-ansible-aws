@@ -19,3 +19,4 @@ jobs:
     - name: Build Ansible Inventory from Amazon EC2
       run: |
         ansible-galaxy collection install amazon.aws
+        ansible-inventory --inventory inventory.aws_ec2.yml --list
