@@ -7,3 +7,4 @@ keyed_groups:
     separator: ''
 compose:
   ansible_user: ubuntu
+use_extra_vars: true
