@@ -1,6 +1,6 @@
 ---
 - name: Configure EC2 instances
-  hosts: all
+  hosts: Ansible
   tasks:
     - name: Install Python3 pip
       ansible.builtin.apt:
