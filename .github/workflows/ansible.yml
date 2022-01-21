@@ -25,7 +25,16 @@ jobs:
       run: |
         Set-Content -Path mykey -Value '${{ secrets.ANSIBLE_SSH_KEY }}'
         chmod 400 mykey
+    - name: Cache Python Packages and Ansible
+      id: cachestuff
+      uses: actions/cache@v2.1.7
+      with: 
+        path: |
+          ~/.cache/
+          ~/.ansible/
+        key: python-ansible-cache
     - name: Install Dependencies
+      if: steps.cachestuff.outputs.cache-hit != 'true'
       shell: pwsh
       run: |
         pip3 install boto3 ansible
