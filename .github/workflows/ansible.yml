@@ -23,9 +23,10 @@ jobs:
       shell: pwsh
       run: |
         Set-Content -Path mykey -Value '${{ secrets.ANSIBLE_SSH_KEY }}'
+        chmod 400 mykey
     - name: Build Ansible Inventory from Amazon EC2
       run: |
         pip3 install boto3 ansible
         ansible-galaxy collection install amazon.aws
         ansible-inventory --inventory ${{ env.inventory-file }} --list -vvvv
-        ansible-playbook all --inventory ${{ env.inventory-file }} myconfig.yml
+        ansible-playbook Ansible --inventory ${{ env.inventory-file }} --private-key mykey myconfig.yml
