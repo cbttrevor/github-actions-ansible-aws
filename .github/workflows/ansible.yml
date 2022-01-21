@@ -34,4 +34,4 @@ jobs:
         ansible-inventory --inventory ${{ env.inventory-file }} --list -vvvv
     - name: Run Ansible Playbook
       run: |
-        ansible-playbook Ansible --inventory ${{ env.inventory-file }} --private-key mykey myconfig.yml
+        ansible-playbook --inventory ${{ env.inventory-file }} --private-key mykey myconfig.yml
