@@ -20,4 +20,4 @@ jobs:
       run: |
         pip3 install boto3
         ansible-galaxy collection install amazon.aws
-        ansible-inventory --inventory inventory.aws_ec2.yml --list
+        ansible-inventory --inventory inventory.aws_ec2.yml --list -vvvv
